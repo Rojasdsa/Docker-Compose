@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+     dockerfile: sql.Dockerfile
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: aceitunas
+    ports:
+      - "3306:3306"
+
+  php:
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    container_name: php-container
+    ports:
+      - "80:80"
+    depends_on:
+      - mysql
