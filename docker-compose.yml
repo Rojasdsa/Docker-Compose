@@ -3,13 +3,16 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8.0
-     dockerfile: sql.Dockerfile
+    build: 
+      context: .
+      dockerfile: sql.Dockerfile
     container_name: mysql-container
     environment:
-      MYSQL_ROOT_PASSWORD: 
+      MYSQL_ALLOW_EMPTY_PASSWORD: "YES"
+      MYSQL_ROOT_PASSWORD: ""
       MYSQL_DATABASE: aceitunas
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   php:
     build:

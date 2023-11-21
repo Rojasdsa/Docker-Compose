@@ -1,7 +1,7 @@
 <?php
 
 // "SERVIDOR" , "USUARIO" , "CONTRASEÑA", "BASE DE DATOS"
-$conexion = mysqli_connect("localhost", "root", "", "aceitunas");
+$conexion = new mysqli("mysql", "root", "", "aceitunas", 3306);
 
 // SE COMPRUEBA LA CONEXIÓN
 if (mysqli_connect_errno()) {
@@ -12,13 +12,11 @@ if (mysqli_connect_errno()) {
 }
 
 // CONSULTAS
-$consulta = "SELECT * FROM TiposAceituna";
-$listaAceitunas = mysqli_query($conexion,$consulta);
+$consulta = "SELECT Nombre FROM TiposAceituna";
+$listaAceitunas = mysqli_query($conexion, $consulta);
 
-if ($listaAceitunas){
-
-    foreach ($listaAceitunas as $aceituna){
-        echo "$aceituna[ID] $aceituna[Nombre] $aceituna[Color] $aceituna[Tamaño] $aceituna[Sabor] $aceituna[Origen] <br>";
+if ($listaAceitunas) {
+    foreach ($listaAceitunas as $aceituna) {
+        echo "$aceituna[Nombre] <br>";
     }
 }
-
